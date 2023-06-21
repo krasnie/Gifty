@@ -1,0 +1,99 @@
+.form-person {
+  @include sectionForm;
+
+  .form-person-container {
+    width: 70%;
+    @include flexboxCenter;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+    }
+
+    .person-photo-container {
+      width: 30%;
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+
+      .form-input-person {
+        label {
+          width: 100%;
+        }
+      }
+    }
+
+    .person-short-container {
+      width: 70%;
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+
+      .form-input-person {
+        label {
+          width: 100%;
+        }
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .form-input-person {
+    width: 100%;
+    @include flexboxCenter;
+    flex-direction: column;
+    :focus{
+      background-color: coral;
+    }
+
+    label {
+      @include textBasic;
+      width: 70%;
+      text-align: left;
+      @media (max-width: 1200px) {
+        text-align: center;
+      }
+    }
+
+    input {
+      border: 0px;
+      border-radius: 5px;
+      background-color: $color-back;
+      padding: 16px;
+      font-size: 16px;
+      margin: 16px;
+      width: 70%;
+    }
+
+    .photo-upload {
+      width: 150px;
+      height: 150px;
+      border-radius: 75px;
+    }
+  }
+
+  .form-gift-for-who {
+    width: 100%;
+    @include flexboxCenter;
+    flex-wrap: wrap;
+
+    h3 {
+      font-family: $font-primary;
+      color: $color-secondary;
+      text-transform: uppercase;
+      font-weight: 700;
+      width: 100%;
+      text-align: center;
+      margin: 20px 0px;
+    }
+
+    .form-checkbox-for-who {
+      margin: 20px;
+    }
+  }
+
+  .button-add-gift-submit, .button-add-person-submit {
+    @include buttonStyle(16px);
+  }
+}

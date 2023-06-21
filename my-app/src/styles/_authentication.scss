@@ -1,0 +1,68 @@
+.authentication{
+  @include sectionForm;
+  @include flexboxCenter;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+  .authentication-login, .authentication-register{
+    width: 50%;
+    @include flexboxCenter;
+    flex-direction: column;
+    @media (max-width: 1000px) {
+      margin: 10px 0px;
+      width: 100%;
+    }
+  }
+  h3 {
+    @include title;
+    font-size: 24px;
+    margin: 10px 0px;
+  }
+  .form-input {
+    width: 80%;
+    @include flexboxCenter;
+    flex-direction: column;
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
+    :focus{
+      background-color: $color-primary;
+    }
+
+    label {
+      @include textBasic;
+      width: 70%;
+      text-align: left;
+      @media (max-width: 1000px) {
+        text-align: center;
+      }
+    }
+
+    input {
+      border: 0px;
+      border-radius: 5px;
+      background-color: $color-back;
+      padding: 16px;
+      font-size: 16px;
+      margin: 16px;
+      width: 70%;
+    }
+  }
+  .button-login, .button-register{
+    @include buttonStyle(16px);
+  }
+}
+
+.logged-user{
+  @include textBasic;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  span{
+    font-weight: 300;
+  }
+  .button-signout{
+    @include buttonSmall($color-secondary);
+    margin-left: 20px;
+  }
+}

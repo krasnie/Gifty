@@ -1,0 +1,32 @@
+@keyframes shake {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+.add-gift{
+  @include flexboxCenter;
+  flex-direction: column;
+  .add-gift-image{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 40px;
+    background-image: url("images/giftbox.png");
+    background-position: center;
+    background-size: cover;
+    animation: shake 1s infinite alternate;
+  }
+
+  .add-gift-button {
+    @include buttonStyle(30px);
+    font-family: $font-brand;
+    letter-spacing: 3px;
+    font-weight: 300;
+    @media (max-width: 500px) {
+      @include buttonStyle(22px);
+    }
+  }
+}

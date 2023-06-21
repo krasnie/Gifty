@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="../src/styles/images/giftbox.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta
+            name="description"
+            content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="../src/styles/images/giftbox.png"/>
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>GIFTY</title>
+    <link rel="stylesheet" href="../src/styles/styles.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css"/>
+</head>
+<body>
+<header class="header" id="header">GIFTY</header>
+<div class="main">
+    <a href="#header" class="up-button">^</a>
+    <div class="container">
+
+        <form class="authentication">
+            <div class="form-input">
+                <label for="userEmail">email</label>
+                <input name="userEmail" id="userEmail" type="email">
+            </div>
+            <div class="form-input">
+                <label for="password">password</label>
+                <input name="password" id="password" type="password">
+            </div>
+            <button class="button-login" type="submit">login</button>
+        </form>
+
+
+        <div class="section">
+            <div class="add-gift">
+                <div class="add-gift-image"></div>
+                <button class="add-gift-button">+ new gift idea</button>
+            </div>
+
+            <form class="form-gift">
+                <div class="form-input">
+                    <label for="giftname">gift name</label>
+                    <input name="giftname" id="giftname" type="text">
+                </div>
+                <div class="form-input">
+                    <label for="giftlink">link</label>
+                    <input name="giftlink" id="giftlink" type="text">
+                </div>
+                <div class="form-input">
+                    <label for="giftdescription">description</label>
+                    <input name="giftdescription" id="giftdescription" type="textarea">
+                </div>
+                <div class="form-input">
+                    <label for="giftprice">price</label>
+                    <input name="giftprice" id="giftprice" type="number">
+                </div>
+                <div class="form-gift-for-who">
+                    <h3>it would be a perfect gift for:</h3>
+                    <input class="form-checkbox-for-who" type="checkbox" id="person1">
+                    <label class="form-checkbox-for-who-avatar" for="person1"></label>
+                    <input class="form-checkbox-for-who" type="checkbox" id="person2">
+                    <label class="form-checkbox-for-who-avatar" for="person2"></label>
+                    <input class="form-checkbox-for-who" type="checkbox" id="person3">
+                    <label class="form-checkbox-for-who-avatar" for="person3"></label>
+                    <input class="form-checkbox-for-who" type="checkbox" id="person4">
+                    <label class="form-checkbox-for-who-avatar" for="person4"></label>
+                    <input class="form-checkbox-for-who" type="checkbox" id="person5">
+                    <label class="form-checkbox-for-who-avatar" for="person5"></label>
+                </div>
+                <button class="button-add-gift-submit" type="submit">save idea</button>
+            </form>
+        </div>
+
+
+        <div class="section-people">
+            <h1>my friends</h1>
+            <div class="people">
+                <div class="people-single">
+                    <a href="#patryk" class="people-pic man"></a>
+                    <p class="people-name">PATRYK</p>
+                </div>
+                <div class="people-single">
+                    <div class="people-pic woman"></div>
+                    <p class="people-name">ANIA</p>
+                </div>
+                <div class="people-single">
+                    <div class="people-pic man"></div>
+                    <p class="people-name">MIKOLAJ</p>
+                </div>
+                <div class="people-single">
+                    <div class="people-pic woman"></div>
+                    <p class="people-name">KASIA</p>
+                </div>
+                <div class="people-single">
+                    <div class="people-pic woman"></div>
+                    <p class="people-name">ASIA</p>
+                </div>
+            </div>
+            <button class="button-people-add">+ add friend</button>
+        </div>
+
+
+        <div class="section">
+
+            <form class="form-person">
+                <div class="form-person-container">
+                    <div class="person-photo-container">
+                        <div class="form-input-person">
+                            <label for="personPhoto">PHOTO</label>
+                            <input class="photo-upload" name="personPhoto" id="personPhoto" type="file"
+                                   accept="image/png, image/jpg">
+                        </div>
+                    </div>
+                    <div class="person-short-container">
+                        <div class="form-input-person">
+                            <label for="personName">name</label>
+                            <input name="personName" id="personName" type="text">
+                        </div>
+                        <div class="form-input-person">
+                            <label for="personDate">date of birth</label>
+                            <input name="personDate" id="personDate" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-input-person">
+                    <label for="personDescription">description</label>
+                    <input name="personDescription" id="personDescription" type="textarea">
+                </div>
+                <button class="button-add-person-submit" type="submit">save friend</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <div class="section-events">
+                <div class="section-events-list">
+                    <h2>events</h2>
+                    <p>coming soon...</p>
+                    <ul>
+                        <li>16.07 PATRYK'S BIRTHDAY</li>
+                        <li>19.02 MARYSIA'S BIRTHDAY</li>
+                        <li>08.03 WOMEN'S DAY</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section person-section" id="patryk">
+            <div class="person-profile">
+                <div class="person-profile-photo"></div>
+                <div class="person-profile-data">
+                    <div class="person-profile-name">patryk</div>
+                    <div class="person-profile-date">16-07-1994</div>
+                    <div class="person-profile-description">he likes football(borussia dortmund), fancy coffee, kraft
+                        beer, traveling, good food and music
+                    </div>
+                    <div class="person-profile-buttons">
+                        <button class="person-profile-edit-button">edit</button>
+                        <button class="person-profile-delete-button">delete</button>
+                        <button class="person-profile-add-gift-button">+ add gift</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="gift-section">
+                <div class="single-gift">
+                    <div class="single-gift-image"></div>
+                    <div class="single-gift-data">
+                        <div class="single-gift-name">borussia dortmund gadgets</div>
+                        <div class="single-gift-price">20-500pln</div>
+                        <div class="single-gift-description">clothes, mug, cap, posters, stickers</div>
+                        <div class="gift-buttons">
+                            <button class="gift-link-button">link</button>
+                            <button class="gift-delete-button">delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-gift">
+                    <div class="single-gift-image"></div>
+                    <div class="single-gift-data">
+                        <div class="single-gift-name">barrel aged coffe</div>
+                        <div class="single-gift-price">60pln</div>
+                        <div class="single-gift-description">light or semi roasted, not dark</div>
+                        <div class="gift-buttons">
+                            <button class="gift-link-button">link</button>
+                            <button class="gift-delete-button">delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-gift">
+                    <div class="single-gift-image"></div>
+                    <div class="single-gift-data">
+                        <div class="single-gift-name">gift name</div>
+                        <div class="single-gift-price">price</div>
+                        <div class="single-gift-description">description</div>
+                        <div class="gift-buttons">
+                            <button class="gift-link-button">link</button>
+                            <button class="gift-delete-button">delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gifts-list-switch">
+                    <input type="checkbox" id="showgifts"/>
+                    <label for="showgifts">^</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="root"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
+
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
+
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+</body>
+</html>

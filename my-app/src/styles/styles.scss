@@ -1,0 +1,70 @@
+@import "reset.css";
+@import "settings/colors";
+@import "settings/mixins";
+@import "settings/fonts";
+
+.test {
+  background-color: cornflowerblue
+}
+
+* {
+  font-family: $font-primary;
+  box-sizing: border-box;
+}
+
+.main {
+  @include flexboxCenter;
+  background-color: $color-primary;
+  background-image: linear-gradient(160deg, $color-back, $color-primary);
+  position: relative;
+
+  .up-button{
+    @include flexboxCenter;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: $color-primary;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    color: $color-back;
+    font-family: $font-primary;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 900;
+    z-index: 99;
+  }
+
+  .container {
+    width: 70%;
+    margin: 30px 0px;
+    @media (max-width: 620px) {
+      width: 90%;
+    }
+
+    .section {
+      width: 100%;
+      margin: 30px 0px;
+      @include flexboxCenter;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+
+@import "header";
+
+@import "authentication";
+
+@import "main_button";
+
+@import "form_gift";
+
+@import "people";
+
+@import "form_person";
+
+@import "events";
+
+@import "person";
+

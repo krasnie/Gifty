@@ -1,0 +1,177 @@
+.person-section {
+  @include sectionMain;
+
+  .person-profile {
+    width: 100%;
+    @include flexboxCenter;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+
+    .person-profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 75px;
+      background-image: url("images/avatar.png");
+      background-position: center;
+      background-size: cover;
+      align-self: flex-start;
+      @media (max-width: 1000px) {
+        align-self: center;
+      }
+    }
+
+    .person-profile-data {
+      max-width: 60%;
+      @media (max-width: 1000px) {
+        max-width: 100%;
+      }
+
+      .person-profile-name {
+        @include title;
+        text-align: left;
+        @media (max-width: 1000px) {
+          text-align: center;
+        }
+      }
+
+      .person-profile-date {
+        @include textBasic;
+        width: 100%;
+        margin: 15px 0px;
+        @media (max-width: 1000px) {
+          text-align: center;
+        }
+      }
+
+      .person-profile-description {
+        @include textBasic;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: 1px;
+        @media (max-width: 1000px) {
+          text-align: center;
+        }
+      }
+
+      .person-profile-buttons {
+        margin-top: 15px;
+        @media (max-width: 1000px) {
+          width: 100%;
+          @include flexboxCenter
+        }
+
+        .person-profile-edit-button {
+          @include buttonSmall($color-primary)
+        }
+
+        .person-profile-delete-button {
+          @include buttonSmall(red);
+          margin-left: 10px;
+        }
+
+        .person-profile-add-gift-button {
+          @include buttonSmall($color-back);
+          background-color: $color-secondary;
+          border: 0px;
+          margin-left: 10px;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+
+  .gift-section {
+    @include flexboxCenter;
+    flex-direction: column;
+    width: 100%;
+
+    .single-gift {
+      width: 100%;
+      margin: 10px;
+      border: 2px dashed $color-primary;
+      border-radius: 15px;
+      padding: 10px;
+      @include flexboxCenter;
+
+      .single-gift-image{
+        width: 80px;
+        height: 80px;
+        background-image: url("images/giftbox.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 0px 40px;
+        @media (max-width: 1000px) {
+          margin: 0px 15px;
+        }
+      }
+      .single-gift-data{
+        width: 100%;
+        .single-gift-name {
+          @include textBasic;
+          font-size: 20px;
+          margin: 5px 0px;
+        }
+
+        .single-gift-price {
+          @include textBasic;
+          font-weight: 900;
+          color: $color-primary;
+          margin: 5px 0px;
+        }
+
+        .single-gift-description {
+          @include textBasic;
+          font-weight: 400;
+          text-transform: none;
+          letter-spacing: 1px;
+          font-size: 0.8em;
+          margin: 5px 0px;
+        }
+
+        .gift-buttons {
+          width: 100%;
+          @include flexboxCenter;
+          justify-content: space-between;
+
+          .gift-link-button {
+            @include buttonSmall($color-back);
+            background-color: $color-secondary;
+            border: 0px;
+            font-weight: 900;
+          }
+
+          .gift-delete-button {
+            @include buttonSmall(red);
+            margin-left: 10px;
+          }
+        }
+      }
+
+    }
+
+    .gifts-list-switch {
+      input {
+        display: none;
+      }
+      @include flexboxCenter;
+      font-family: $font-primary;
+      font-weight: 900;
+      color: $color-secondary;
+      padding: 10px;
+      width: 100%;
+      height: 40px;
+      margin-top: 20px;
+      margin-bottom: -20px;
+      label{
+        width: 100%;
+        text-align: center;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.section-people {
+  @include sectionMain;
+
+  h1 {
+    @include title;
+    margin-bottom: 40px;
+  }
+
+  .people {
+    @include flexboxCenter;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .people-single {
+      @include flexboxCenter;
+      flex-direction: column;
+      width: 25%;
+      margin: 20px 0px;
+      @media (max-width: 1200px) {
+        width: 33%;
+      }
+      @media (max-width: 900px) {
+        width: 50%;
+      }
+      @media (max-width: 620px) {
+        width: 100%;
+      }
+
+      .man {
+        background-image: url("images/avatar.png");
+      }
+
+      .woman {
+        background-image: url("images/avatar2.png");
+      }
+
+      .people-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+        background-position: center;
+        background-size: cover;
+
+      }
+
+      .people-name {
+        @include textBasic;
+        margin: 10px 0px;
+      }
+    }
+  }
+
+  .button-people-add {
+    @include buttonStyle(16px);
+  }
+}
