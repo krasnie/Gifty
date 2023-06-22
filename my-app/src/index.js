@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/styles.scss';
 import reportWebVitals from './reportWebVitals';
-import firebase, {db} from "./firebase";
+//import firebase, {db} from "./firebase";
 import Header from "./components/Header";
 import Authentication from "./components/Authentication";
 

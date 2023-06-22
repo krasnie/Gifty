@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {createUserWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
@@ -13,11 +13,15 @@ const Authentication = () => {
     const [loginPassword, setLoginPassword] = useState("");
     const [user, setUser] = useState({});
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-    })
+    useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
 
-    const register = async () => {
+    }, [])
+
+    const register = async (e) => {
+        e.preventDefault();
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
             console.log(user)
@@ -26,7 +30,8 @@ const Authentication = () => {
         }
     }
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault();
         try {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
             console.log(user)

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "firebase": "^9.22.2",
+    "node-sass": "^9.0.0"
+  }
+}
