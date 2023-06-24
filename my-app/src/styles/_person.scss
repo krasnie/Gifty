@@ -36,9 +36,9 @@
     }
 
     .person-profile-data {
-      max-width: 60%;
+      width: 60%;
       @media (max-width: 1000px) {
-        max-width: 100%;
+        width: 100%;
       }
 
       .person-profile-name {

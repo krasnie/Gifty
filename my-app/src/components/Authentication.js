@@ -29,7 +29,7 @@ const Authentication = ({setUserLoggedIn}) => {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword).then((result)=>{
                 localStorage.setItem("userLoggedIn", true);
                 setUserLoggedIn(true);
-                navigate("/");
+                navigate("/home");
             });
             console.log(user)
         } catch (error) {
@@ -43,7 +43,7 @@ const Authentication = ({setUserLoggedIn}) => {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then((result)=>{
                 localStorage.setItem("userLoggedIn", true);
                 setUserLoggedIn(true);
-                navigate("/");
+                navigate("/home");
             });
             console.log(user)
 
@@ -55,7 +55,8 @@ const Authentication = ({setUserLoggedIn}) => {
     const logout = async () => {
         await signOut(auth).then((result)=>{
             localStorage.setItem("userLoggedIn", false);
-            setUserLoggedIn(false)
+            setUserLoggedIn(false);
+            navigate("/")
         });;
     }
 

@@ -3,7 +3,8 @@ import firebase from "firebase/compat/app";
 // Required for side-effects
 import "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
-import {getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAIFCT6x0yvQQ8Kfw144em8Ivc1kfWH0tk",
@@ -20,6 +21,9 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
+const storage = getStorage(app)
+
 export {db};
 export default firebase;
 export {auth};
+export {storage}

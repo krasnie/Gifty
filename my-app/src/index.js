@@ -24,16 +24,18 @@ const App = () => {
     const [userLoggedIn, setUserLoggedIn] = useState(false)
 
     return (<HashRouter>
-            <Header/>
+            <Header userLoggedIn={userLoggedIn}/>
             <div className="main">
                 <div className="container">
-                    <Authentication setUserLoggedIn={setUserLoggedIn}/>
                     <Routes>
-                        <Route path='/' element={<MainButton/>}/>
-                        <Route path='/add-gift' element={<FormGift/>}/>
-                        <Route path='/friends' element={<><People/><FormPerson/></>}/>
-                        <Route path='/events' element={<Events/>}/>
-                        <Route path='/person' element={<Person/>}/>
+                        <Route path='/login' element={<Authentication setUserLoggedIn={setUserLoggedIn}/>}/>
+                        <Route path='/' element={<><MainButton userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/home' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><MainButton userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/add-gift' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><FormGift userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/friends' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><People userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/add-friend' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><FormPerson userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/events' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Events userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='/person' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Person userLoggedIn={userLoggedIn}/></>}/>
                     </Routes>
                 </div>
             </div>
