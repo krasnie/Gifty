@@ -10,10 +10,15 @@
 * {
   font-family: $font-primary;
   box-sizing: border-box;
+  position: relative;
 }
 
 .main {
   @include flexboxCenter;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
   background-color: $color-primary;
   background-image: linear-gradient(160deg, $color-back, $color-primary);
   position: relative;

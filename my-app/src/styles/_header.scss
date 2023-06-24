@@ -1,13 +1,39 @@
 .header {
   @include flexboxCenter;
   width: 100vw;
-  height: 100px;
+  height: 150px;
   background-color: $color-primary;
   background-image: linear-gradient(160deg, $color-primary, $color-back);
-  color: $color-secondary;
-  font-size: 60px;
-  font-family: $font-brand;
-  letter-spacing: 3px;
+  //position: fixed;
+  //top: 0;
+  //left: 0;
+  flex-direction: column;
+  .logo{
+    color: $color-secondary;
+    font-size: 60px;
+    font-family: $font-brand;
+    letter-spacing: 3px;
+    margin: 20px 0px;
+  }
+  .navigation{
+    @include flexboxCenter;
+    font-size: 13px;
+    font-family: $font-primary;
+    li {
+      list-style-type: none;
+      .nav-button {
+        text-decoration: none;
+        margin: 10px;
+        text-transform: uppercase;
+        color: $color-secondary;
+        font-size: 16px;
+        font-weight: 700;
+        :hover{
+          background-color: $color-primary;
+        }
+      }
+    }
+  }
 }
 
 

@@ -1,3 +1,14 @@
+.back-button{
+  margin-left: 75px;
+  width: 100%;
+  .back-button-link{
+    @include buttonSmall($color-secondary);
+    font-family: $font-primary;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}
+
 .person-section {
   @include sectionMain;
 

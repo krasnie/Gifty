@@ -11,8 +11,8 @@
   @include flexboxCenter;
   flex-direction: column;
   .add-gift-image{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 40px;
     background-image: url("images/giftbox.png");
     background-position: center;
@@ -25,6 +25,7 @@
     font-family: $font-brand;
     letter-spacing: 3px;
     font-weight: 300;
+    text-decoration: none;
     @media (max-width: 500px) {
       @include buttonStyle(22px);
     }

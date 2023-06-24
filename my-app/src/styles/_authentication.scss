@@ -56,8 +56,14 @@
 .logged-user{
   @include textBasic;
   width: 100%;
-  text-align: center;
+  text-align: right;
   font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 30px;
+  font-size: 14px;
+  @media (max-width: 1000px) {
+    text-align: center;
+  }
   span{
     font-weight: 300;
   }
