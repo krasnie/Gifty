@@ -87,6 +87,7 @@
         .person-profile-add-gift-button {
           @include buttonSmall($color-back);
           background-color: $color-secondary;
+          font-family: $font-primary;
           border: 0px;
           margin-left: 10px;
           font-weight: 900;
@@ -148,6 +149,7 @@
           width: 100%;
           @include flexboxCenter;
           justify-content: space-between;
+          font-family: $font-primary;
 
           .gift-link-button {
             @include buttonSmall($color-back);

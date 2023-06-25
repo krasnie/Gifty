@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {addDoc, collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../firebase";
+import {useNavigate} from "react-router-dom";
 
 const FormGift = (props) => {
     const [giftName, setGiftName] = useState("");
     const [giftLink, setGiftLink] = useState("");
     const [giftPrice, setGiftPrice] = useState("");
     const [giftDescription, setGiftDescription] = useState("");
+    const [giftPeople, setGiftPeople] = useState([]);
     const [peopleList, setPeopleList] = useState([]);
 
     const personsCollection = collection(db, "persons");
+    const giftsCollection = collection(db, "gifts");
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         const getPeople = async () => {
@@ -24,12 +29,29 @@ const FormGift = (props) => {
 
     const createGift = async (event) => {
         event.preventDefault();
-        await addDoc(personsCollection.personGiftBox, {
-            giftName,
-            giftLink,
-            giftPrice,
-            giftDescription,
+        giftPeople.map((person)=> {
+            console.log(person)
+            addDoc(giftsCollection, {
+                giftName,
+                giftLink,
+                giftPrice,
+                giftDescription,
+                giftPerson: person,
+            })
         })
+        navigate("/friends")
+    }
+
+    const addGiftPerson = (id) => {
+        let checkBox = document.getElementById(id);
+
+        if (checkBox.checked) {
+            setGiftPeople(prev => [...prev, id])
+            console.log(`dodano ${id}`)
+        } else {
+            setGiftPeople(prev => prev.filter(el => !el === id))
+            console.log(`usunieto ${id}`)
+        }
     }
 
 
@@ -57,7 +79,7 @@ const FormGift = (props) => {
                     </div>
                     <div className="form-input">
                         <label htmlFor="giftprice">price</label>
-                        <input name="giftprice" id="giftprice" type="number" onChange={(event) => {
+                        <input name="giftprice" id="giftprice" type="text" onChange={(event) => {
                             setGiftPrice(event.target.value)
                         }}/>
                     </div>
@@ -67,7 +89,7 @@ const FormGift = (props) => {
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <>
-                                        <input className="form-checkbox-for-who" type="checkbox" id={person.id}/>
+                                        <input className="form-checkbox-for-who" type="checkbox" id={person.id} onChange={(event) => addGiftPerson(person.id)}/>
                                         <label className="form-checkbox-for-who-avatar"
                                                htmlFor={person.id}>{person.personName}</label>
                                     </>
@@ -85,7 +107,7 @@ const FormGift = (props) => {
                         {/*<input className="form-checkbox-for-who" type="checkbox" id="person5"/>*/}
                         {/*<label className="form-checkbox-for-who-avatar" htmlFor="person5"></label>*/}
                     </div>
-                    <button className="button-add-gift-submit" type="submit">save idea</button>
+                    <button className="button-add-gift-submit" type="submit" onClick={createGift}>save idea</button>
                 </form>
             </div>
         )

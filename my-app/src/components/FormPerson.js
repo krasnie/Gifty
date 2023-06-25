@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { addDoc, collection } from "firebase/firestore";
-import {db, auth, storage} from "../firebase";
+import {db, auth} from "../firebase";
 import {useNavigate} from "react-router-dom";
-import { ref, uploadBytes } from "firebase/storage";
-import { v4 } from "uuid";
-
 
 const FormPerson = (props) => {
-    const [personPhoto, setPersonPhoto] = useState(null);
+    const [personPhoto, setPersonPhoto] = useState("");
     const [personName, setPersonName] = useState("");
     const [personBirthday, setPersonBirthday] = useState(new Date());
     const [personDescription, setPersonDescription] = useState("");
@@ -25,26 +22,18 @@ const FormPerson = (props) => {
         })
     }
 
-    const uploadPhoto = () => {
-        if (personPhoto == null) return;
-        const photoRef = ref(storage, `images/${personPhoto.name + v4()}`);
-        uploadBytes(photoRef, personPhoto).then(()=>{
-            alert("Image Uploaded")
-        })
-    }
-
     const createPerson = async (event) => {
         event.preventDefault();
         await addDoc(personsCollection, {
             personAuthor: {name: auth.currentUser.email, id: auth.currentUser.uid},
+            personPhoto,
             personName,
             personBirthday,
             personDescription,
             personGiftBox
         })
         navigate("/friends");
-        await createEvent();
-        await uploadPhoto();
+        createEvent();
     };
 
     if (props.userLoggedIn) {
@@ -56,7 +45,7 @@ const FormPerson = (props) => {
                             <div className="form-input-person">
                                 <label htmlFor="personPhoto">PHOTO</label>
                                 <input className="photo-upload" name="personPhoto" id="personPhoto" type="file"
-                                       accept="image/png, image/jpg" onChange={(event) => {setPersonPhoto(event.target.files[0])}} />
+                                       accept="image/png, image/jpg" onChange={(event) => {setPersonPhoto(event.target.value)}} />
                             </div>
                         </div>
                         <div className="person-short-container">

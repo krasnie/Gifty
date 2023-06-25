@@ -26,7 +26,7 @@ const People = (props) => {
             console.log(allPeople)
         }
         getPeople();
-    }, [peopleList])
+    }, [])
 
     if (props.userLoggedIn) {
         return (<>
@@ -35,7 +35,7 @@ const People = (props) => {
                     <h1>my friends</h1>
                     <div className="people">
                         {peopleList.map((person) => {
-                            const personLink = `/people#${person.id}`
+                            const personLink = `/friends/#${person.id}`
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <div className="people-single">

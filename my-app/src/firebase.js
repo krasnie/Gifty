@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAIFCT6x0yvQQ8Kfw144em8Ivc1kfWH0tk",
-    authDomain: "gifty-170d8.firebaseapp.com",
-    projectId: "gifty-170d8",
-    storageBucket: "gifty-170d8.appspot.com",
-    messagingSenderId: "975326850077",
-    appId: "1:975326850077:web:672636add178db559e6af4"
+    apiKey: "AIzaSyCMCSJcjJmKU3mhiPvXthHZ7bD_HJp6Nmc",
+    authDomain: "new-gifty.firebaseapp.com",
+    projectId: "new-gifty",
+    storageBucket: "new-gifty.appspot.com",
+    messagingSenderId: "834185582074",
+    appId: "1:834185582074:web:98a6e0d7d548a0ab1f0043"
 };
 
 const app = initializeApp(firebaseConfig);
