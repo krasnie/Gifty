@@ -1,6 +1,31 @@
 import React, {useState, useEffect} from 'react';
+import {db, auth} from "../firebase";
+import {collection, deleteDoc, doc, getDocs} from "firebase/firestore";
 
 const Events = (props) => {
+    const [eventsList, setEventsList] = useState([]);
+
+    const eventsCollection = collection(db, "events");
+
+    useEffect(() => {
+        const getEvents = async () => {
+            const events = await getDocs(eventsCollection);
+            const allEvents = (events.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            allEvents.sort((a,b) => (a.eventDate[0]-b.eventDate[0]))
+            allEvents.sort((a,b) => (a.eventDate[1]-b.eventDate[1]))
+            allEvents.sort((a,b) => (a.eventDate[4]-b.eventDate[4]))
+            allEvents.sort((a,b) => (a.eventDate[3]-b.eventDate[3]))
+            console.log(allEvents)
+            setEventsList(allEvents)
+        }
+        getEvents();
+    }, [])
+
+    const eventDelete = async (id) => {
+        const deletedEvent = doc(db, "events", id);
+        await deleteDoc(deletedEvent);
+    }
+
     if (props.userLoggedIn) {
         return (
             <div className="section">
@@ -8,10 +33,28 @@ const Events = (props) => {
                     <div className="section-events-list">
                         <h2>events</h2>
                         <p>coming soon...</p>
+                        <p>MY EVENTS</p>
                         <ul>
-                            <li>16.07 PATRYK'S BIRTHDAY</li>
-                            <li>19.02 MARYSIA'S BIRTHDAY</li>
-                            <li>08.03 WOMEN'S DAY</li>
+                            {eventsList.map((ev) => {
+                                    if (ev.eventAuthor.id === auth.currentUser.uid) {
+                                        return (<div className="single-event">
+                                            <li>{ev.eventDate} {ev.eventName}</li>
+                                            <button className="delete-event-button" onClick={()=>eventDelete(ev.id)}>delete</button>
+                                        </div>)
+                                    }
+                                })
+                            }
+                        </ul>
+                        <p>OTHER EVENTS</p>
+                        <ul>
+                            {eventsList.map((ev) => {
+                                if (ev.eventAuthor.id === "admin") {
+                                    return (<div className="single-event">
+                                        <li>{ev.eventDate} {ev.eventName}</li>
+                                    </div>)
+                                }
+                            })
+                            }
                         </ul>
                     </div>
                 </div>

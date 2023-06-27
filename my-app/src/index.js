@@ -35,6 +35,7 @@ const App = () => {
                         <Route path='/friends' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><People userLoggedIn={userLoggedIn}/></>}/>
                         <Route path='/add-friend' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><FormPerson userLoggedIn={userLoggedIn}/></>}/>
                         <Route path='/events' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Events userLoggedIn={userLoggedIn}/></>}/>
+                        {}
                         <Route path='/person' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Person userLoggedIn={userLoggedIn}/></>}/>
                     </Routes>
                 </div>

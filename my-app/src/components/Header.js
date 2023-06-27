@@ -6,7 +6,7 @@ import {
 const Header = (props) => {
     return(
         <header className="header" id="header">
-            <div className="logo">GIFTY</div>
+            <Link to="/home"><div className="logo">GIFTY</div></Link>
             <div className="navigation">
                 <li>{!props.userLoggedIn && <Link to="/" class="nav-button" >home</Link>}</li>
                 <li>{props.userLoggedIn && <Link to="/home" class="nav-button" >home</Link>}</li>

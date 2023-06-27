@@ -15,6 +15,7 @@ const Person = (props) => {
     let navigate = useNavigate();
 
     const [giftsList, setGiftsList] = useState([]);
+    const [reload, setReload] = useState(true);
 
     const giftsCollection = collection(db, "gifts");
 
@@ -22,21 +23,38 @@ const Person = (props) => {
         const getGifts = async () => {
             const gifts = await getDocs(giftsCollection);
             const allGifts = (gifts.docs.map((doc) => ({...doc.data(), id: doc.id})));
-            //setPeopleList(allPeople.filter((doc) => (doc.personAuthor.id === auth.currentUser.uid)))
             setGiftsList(allGifts)
-            console.log(allGifts)
         }
         getGifts();
-    }, [])
+        console.log("reloading")
+    }, [reload])
+
 
     const personDelete = async (id) => {
         const deletedPerson = doc(db, "persons", id);
         await deleteDoc(deletedPerson);
+        giftsList.map((gift)=>{
+            if(gift.giftPerson === id){
+                giftDelete(gift.id)
+            }
+        })
     }
 
     const giftDelete = async (id) => {
         const deletedGift = doc(db, "gifts", id);
         await deleteDoc(deletedGift);
+        setReload((prev)=>!prev)
+    }
+
+    const hideGifts = (id) => {
+        const hiddenGifts = document.getElementById(`gifts${id}`)
+        hiddenGifts.classList.toggle("hidden")
+        const hideButton = document.getElementById(`hide${id}`)
+        if (hideButton.innerText === "▲") {
+            hideButton.innerText = "▼"
+        } else {
+            hideButton.innerText = "▲"
+        }
     }
 
     if (props.userLoggedIn) {
@@ -46,7 +64,7 @@ const Person = (props) => {
                 {/*</div>*/}
                 <div className="section person-section" id={props.personId}>
                     <div className="person-profile">
-                        <div className="person-profile-photo"></div>
+                        <div className="person-profile-photo" style={{backgroundImage: `url("${props.personPhotoURL}")`}}></div>
                         <div className="person-profile-data">
                             <div className="person-profile-name">{props.personName}</div>
                             <div className="person-profile-date">{props.personBirthday}</div>
@@ -61,12 +79,12 @@ const Person = (props) => {
                     </div>
 
 
-                    <div className="gift-section">
+                    <div className="gift-section" id={`gifts${props.personId}`}>
 
                         {giftsList.map((gift)=>{
                             if(gift.giftPerson === props.personId) {
                                 return(
-                                    <div className="single-gift">
+                                    <div className="single-gift" id={gift.id}>
                                         <div className="single-gift-image"></div>
                                         <div className="single-gift-data">
                                             <div className="single-gift-name">{gift.giftName}</div>
@@ -82,11 +100,10 @@ const Person = (props) => {
                             } else return null;
 
                         })}
-
-                        <div className="gifts-list-switch">
-                            <input type="checkbox" id="showgifts"/>
-                            <label htmlFor="showgifts">^</label>
-                        </div>
+                    </div>
+                    <div className="gifts-list-switch" >
+                        <input type="checkbox" id="showgifts"/>
+                        <label htmlFor="showgifts" id={`hide${props.personId}`} onClick={()=>hideGifts(props.personId)}>▲</label>
                     </div>
                 </div>
             </>

@@ -21,9 +21,8 @@ const People = (props) => {
         const getPeople = async () => {
             const people = await getDocs(personsCollection);
             const allPeople = (people.docs.map((doc) => ({...doc.data(), id: doc.id})));
-            //setPeopleList(allPeople.filter((doc) => (doc.personAuthor.id === auth.currentUser.uid)))
             setPeopleList(allPeople)
-            console.log(allPeople)
+            console.log("reading")
         }
         getPeople();
     }, [])
@@ -39,7 +38,7 @@ const People = (props) => {
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <div className="people-single">
-                                        <a href={personLink} className="people-pic man"></a>
+                                        <a href={personLink} className="people-pic man" style={{backgroundImage: `url("${person.personPhotoURL}")`}}></a>
                                         <p className="people-name">{person.personName}</p>
                                     </div>
                                 )
@@ -51,7 +50,7 @@ const People = (props) => {
 
                 {peopleList.map((person) => {
                     if (person.personAuthor.id === auth.currentUser.uid){
-                        return <Person userLoggedIn={props.userLoggedIn} personName={person.personName} personBirthday={person.personBirthday} personDescription={person.personDescription} personId={person.id} />
+                        return <Person userLoggedIn={props.userLoggedIn} personName={person.personName} personBirthday={person.personBirthday} personDescription={person.personDescription} personId={person.id} personPhotoURL={person.personPhotoURL}/>
                     } else {return null}
                 })
                 }

@@ -22,15 +22,13 @@ const FormGift = (props) => {
             const allPeople = (people.docs.map((doc) => ({...doc.data(), id: doc.id})));
             //setPeopleList(allPeople.filter((doc) => (doc.personAuthor.id === auth.currentUser.uid)))
             setPeopleList(allPeople)
-            console.log(allPeople)
         }
         getPeople();
     }, [])
 
     const createGift = async (event) => {
         event.preventDefault();
-        giftPeople.map((person)=> {
-            console.log(person)
+        giftPeople.map((person) => {
             addDoc(giftsCollection, {
                 giftName,
                 giftLink,
@@ -44,13 +42,14 @@ const FormGift = (props) => {
 
     const addGiftPerson = (id) => {
         let checkBox = document.getElementById(id);
+        let label = document.getElementById(`label${id}`);
 
         if (checkBox.checked) {
             setGiftPeople(prev => [...prev, id])
-            console.log(`dodano ${id}`)
+            label.classList.add("checked-label")
         } else {
             setGiftPeople(prev => prev.filter(el => !el === id))
-            console.log(`usunieto ${id}`)
+            label.classList.remove("checked-label")
         }
     }
 
@@ -89,9 +88,13 @@ const FormGift = (props) => {
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <>
-                                        <input className="form-checkbox-for-who" type="checkbox" id={person.id} onChange={(event) => addGiftPerson(person.id)}/>
-                                        <label className="form-checkbox-for-who-avatar"
-                                               htmlFor={person.id}>{person.personName}</label>
+                                        <div className="form-gift-for-who-option">
+                                            <input className="form-checkbox-for-who" type="checkbox" id={person.id}
+                                                   onChange={(event) => addGiftPerson(person.id)}/>
+                                            <label className="form-checkbox-for-who-avatar"
+                                                   htmlFor={person.id} id={`label${person.id}`} style={{backgroundImage: `url("${person.personPhotoURL}")`}}></label>
+                                            <p>{person.personName}</p>
+                                        </div>
                                     </>
                                 )
                             }

@@ -18,6 +18,20 @@
         label {
           width: 100%;
         }
+        .photo-upload {
+          width: 150px;
+          height: 150px;
+          border-radius: 75px;
+          background-color: $color-back;
+          background-image: url("images/avatar.png");
+          background-position: center;
+          background-size: contain;
+          margin: 15px 0px;
+          align-self: flex-start;
+          @media (max-width: 1200px) {
+            align-self: center;
+          }
+        }
       }
     }
 
@@ -35,6 +49,8 @@
         input {
           width: 100%;
         }
+
+
       }
     }
   }
@@ -66,10 +82,8 @@
       width: 70%;
     }
 
-    .photo-upload {
-      width: 150px;
-      height: 150px;
-      border-radius: 75px;
+    .photo-upload-button {
+      display: none
     }
   }
 

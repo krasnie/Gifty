@@ -166,25 +166,28 @@
       }
 
     }
-
-    .gifts-list-switch {
-      input {
-        display: none;
-      }
-      @include flexboxCenter;
-      font-family: $font-primary;
-      font-weight: 900;
-      color: $color-secondary;
-      padding: 10px;
+  }
+  .hidden {
+    display: none;
+  }
+  .gifts-list-switch {
+    input {
+      display: none;
+    }
+    @include flexboxCenter;
+    font-family: $font-primary;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: $color-secondary;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    label{
       width: 100%;
-      height: 40px;
-      margin-top: 20px;
-      margin-bottom: -20px;
-      label{
-        width: 100%;
-        text-align: center;
-      }
-
+      text-align: center;
     }
   }
 }

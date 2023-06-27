@@ -8,7 +8,8 @@
     @media (max-width: 1000px) {
       width: 100%;
     }
-    :focus{
+
+    :focus {
       background-color: $color-primary;
     }
 
@@ -47,21 +48,37 @@
       margin: 20px 0px;
     }
 
-    .form-checkbox-for-who{
-      display: none
-    }
+    .form-gift-for-who-option {
+      @include flexboxCenter;
+      flex-direction: column;
+      margin: 10px;
+      margin-bottom: 30px;
 
-    .form-checkbox-for-who-avatar {
-      margin: 20px;
-      width: 100px;
-      height: 100px;
-      background-image: url("images/avatar.png");
-      background-position: center;
-      background-size: cover;
-      border-radius: 50px;
-      @media (max-width: 400px){
-        width: 70px;
-        height: 70px;
+      .form-checkbox-for-who {
+        display: none
+      }
+
+      .form-checkbox-for-who-avatar {
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+        background-image: url("images/avatar.png");
+        background-position: center;
+        background-size: cover;
+        border-radius: 50px;
+        font-family: $font-primary;
+        @media (max-width: 400px) {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      p {
+        font-family: $font-primary;
+        text-transform: uppercase;
+        color: $color-secondary;
+        font-size: 14px;
+        font-weight: 700;
       }
     }
   }
@@ -69,4 +86,8 @@
   .button-add-gift-submit {
     @include buttonStyle(16px);
   }
+}
+
+.checked-label {
+  border: 5px solid $color-primary;
 }
