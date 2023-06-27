@@ -38,7 +38,7 @@ const Events = (props) => {
                             {eventsList.map((ev) => {
                                     if (ev.eventAuthor.id === auth.currentUser.uid) {
                                         return (<div className="single-event">
-                                            <li>{ev.eventDate} {ev.eventName}</li>
+                                            <li key={ev.id}>{ev.eventDate} {ev.eventName}</li>
                                             <button className="delete-event-button" onClick={()=>eventDelete(ev.id)}>delete</button>
                                         </div>)
                                     }

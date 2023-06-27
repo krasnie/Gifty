@@ -84,7 +84,7 @@ const Person = (props) => {
                         {giftsList.map((gift)=>{
                             if(gift.giftPerson === props.personId) {
                                 return(
-                                    <div className="single-gift" id={gift.id}>
+                                    <div className="single-gift" id={gift.id} key={gift.id}>
                                         <div className="single-gift-image"></div>
                                         <div className="single-gift-data">
                                             <div className="single-gift-name">{gift.giftName}</div>

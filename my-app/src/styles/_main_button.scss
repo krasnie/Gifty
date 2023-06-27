@@ -10,6 +10,7 @@
 .add-gift{
   @include flexboxCenter;
   flex-direction: column;
+  width: 100%;
   .add-gift-image{
     width: 200px;
     height: 200px;
@@ -30,4 +31,70 @@
       @include buttonStyle(22px);
     }
   }
+}
+
+.explore-section{
+  @include flexboxCenter;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  @media (max-width: 1000px) {
+    justify-content: center;
+  }
+  .see-gift-ideas, .see-events{
+    border: 3px dashed $color-secondary;
+    width: 40%;
+    margin: 30px;
+    border-radius: 75px;
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
+    @media (max-width: 5000px) {
+      margin: 30px 10px;
+    }
+    h3, h2{
+      font-family: $font-primary;
+      text-transform: uppercase;
+      color: $color-secondary;
+      font-size: 30px;
+      text-align: center;
+    }
+    h3 {
+      margin-top: 60px;
+      margin-bottom: 20px;
+      padding: 0px 10px;
+    }
+    h2 {
+      font-family: $font-brand;
+      margin-bottom: 30px;
+      font-size: 50px;
+    }
+    .friends-image{
+      background-image: url("images/friends.png");
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 100%;
+      height: 250px;
+      border-radius: 0px 0px 75px 75px ;
+    }
+    .events-image{
+      background-image: url("images/girlanda2.png");
+      background-position: bottom;
+      background-size: cover;
+      width: 100%;
+      height: 150px;
+      border-radius: 75px 75px 0px 0px;
+    }
+  }
+  .see-events {
+    @media (max-width: 1200px) {
+      margin-bottom: 50px;
+    }
+    h2 {
+    margin-bottom: 130px;
+    @media (max-width: 1200px) {
+      margin-bottom: 50px;
+    }
+  }}
 }

@@ -37,7 +37,7 @@ const People = (props) => {
                             const personLink = `/friends/#${person.id}`
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
-                                    <div className="people-single">
+                                    <div className="people-single" key={person.id}>
                                         <a href={personLink} className="people-pic man" style={{backgroundImage: `url("${person.personPhotoURL}")`}}></a>
                                         <p className="people-name">{person.personName}</p>
                                     </div>
