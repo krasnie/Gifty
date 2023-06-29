@@ -11,6 +11,7 @@
 
 .person-section {
   @include sectionMain;
+  padding-bottom: 0px;
 
   .person-profile {
     width: 100%;
@@ -168,7 +169,6 @@
 
           .gift-delete-button {
             @include buttonSmall(red);
-            margin-left: 10px;
           }
         }
       }
@@ -188,14 +188,16 @@
     font-size: 20px;
     letter-spacing: 2px;
     color: $color-secondary;
-    padding: 10px;
     width: 100%;
     height: 40px;
     margin-top: 20px;
-    margin-bottom: -20px;
+    margin-bottom: 20px;
     label{
       width: 100%;
       text-align: center;
+      padding: 30px;
+      z-index: 2;
+      cursor: pointer;
     }
   }
 }

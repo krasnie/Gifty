@@ -33,7 +33,8 @@ const Authentication = ({setUserLoggedIn}) => {
             });
             console.log(user)
         } catch (error) {
-            console.log(error.message)
+            const errorMessageRegistration = document.getElementById("error-registration");
+            errorMessageRegistration.classList.remove("hidden");
         }
     }
 
@@ -48,7 +49,8 @@ const Authentication = ({setUserLoggedIn}) => {
             console.log(user)
 
         } catch (error) {
-            console.log(error.message)
+            const errorMessageLogin = document.getElementById("error-login");
+            errorMessageLogin.classList.remove("hidden");
         }
     }
 
@@ -85,6 +87,7 @@ const Authentication = ({setUserLoggedIn}) => {
                                     setLoginPassword(event.target.value)
                                 }}/>
                         </div>
+                        <div className="error-message hidden" id="error-login">Invalid e-mail or password</div>
                         <button onClick={login} className="button-login">LOGIN</button>
                     </div>
                     <div className="authentication-register">
@@ -105,6 +108,7 @@ const Authentication = ({setUserLoggedIn}) => {
                                     setRegisterPassword(event.target.value)
                                 }}/>
                         </div>
+                        <div className="error-message hidden" id="error-registration">Invalid e-mail or password (min. 6 characters)</div>
                         <button onClick={register} className="button-register">CREATE USER</button>
                     </div>
                 </form>

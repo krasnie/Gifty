@@ -72,6 +72,21 @@
   }
 }
 
+.error-message{
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 600;
+  color: red;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.hidden{
+  display: none;
+}
+
 @import "header";
 
 @import "authentication";

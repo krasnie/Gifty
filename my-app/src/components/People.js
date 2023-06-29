@@ -1,4 +1,4 @@
-import React, {useState, useEffect, scrollIntoView} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {collection, getDocs} from "firebase/firestore"
 import { auth, db } from "../firebase";
@@ -15,8 +15,19 @@ const People = (props) => {
         const getPeople = async () => {
             const people = await getDocs(personsCollection);
             const allPeople = (people.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            allPeople.sort((a, b) => {
+                let fa = a.personName.toLowerCase(),
+                    fb = b.personName.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
             setPeopleList(allPeople)
-            console.log("reading")
         }
         getPeople();
     }, [reloadPeople])
@@ -33,7 +44,6 @@ const People = (props) => {
                     <h1>my friends</h1>
                     <div className="people">
                         {peopleList.map((person) => {
-                            const personLink = `/friends/#${person.id}`
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <div className="people-single" key={person.id}>

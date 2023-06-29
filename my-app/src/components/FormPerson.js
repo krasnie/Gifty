@@ -8,7 +8,7 @@ const FormPerson = (props) => {
     const [personPhoto, setPersonPhoto] = useState(null);
     const [personPhotoURL, setPersonPhotoURL] = useState("https://firebasestorage.googleapis.com/v0/b/new-gifty.appspot.com/o/userImages%2Ficon.jpg?alt=media&token=67d50445-942f-475d-bd37-e3de2b868270");
     const [personName, setPersonName] = useState("");
-    const [personBirthday, setPersonBirthday] = useState(new Date());
+    const [personBirthday, setPersonBirthday] = useState("");
     const [personDescription, setPersonDescription] = useState("");
 
     const personsCollection = collection(db, "persons");
@@ -21,7 +21,6 @@ const FormPerson = (props) => {
         await uploadBytes(photoRef, personPhoto).then((result) => {
             getDownloadURL(photoRef).then((url) => {
                 setPersonPhotoURL(url);
-                console.log(url)
             })
         });
     };
@@ -31,6 +30,7 @@ const FormPerson = (props) => {
     }, [personPhoto])
 
     const createEvent = async () => {
+        if(personBirthday === "") {return null;}
         const month = `${personBirthday[5]}${personBirthday[6]}`
         const day = `${personBirthday[8]}${personBirthday[9]}`
         const date = `${day}.${month}`
@@ -44,14 +44,28 @@ const FormPerson = (props) => {
 
     const createPerson = async (event) => {
         event.preventDefault();
-        addDoc(personsCollection, {
+        const errorMessageName = document.getElementById("error-message-person-name");
+        const errorMessageNameLong = document.getElementById("error-message-person-name-long");
+        if (personName.length < 3){
+            errorMessageName.classList.remove("hidden");
+            return null;
+        } else {
+            errorMessageName.classList.add("hidden");
+        }
+        if (personName.length > 30){
+            errorMessageNameLong.classList.remove("hidden");
+            return null;
+        } else {
+            errorMessageNameLong.classList.add("hidden");
+        }
+        await addDoc(personsCollection, {
             personAuthor: {name: auth.currentUser.email, id: auth.currentUser.uid},
             personPhotoURL,
             personName,
             personBirthday,
             personDescription,
         })
-        createEvent();
+        await createEvent();
         navigate("/friends");
     };
 
@@ -66,7 +80,7 @@ const FormPerson = (props) => {
                                 <label htmlFor="personPhoto">PHOTO</label>
                                 <label className="photo-upload" style={{backgroundImage: `url("${personPhotoURL}")`}} htmlFor="personPhoto"></label>
                                 <input className="photo-upload-button" name="personPhoto" id="personPhoto" type="file"
-                                       accept="image/png, image/jpg" onChange={(event) => {
+                                       accept="image/png, image/jpeg" onChange={(event) => {
                                     setPersonPhoto(event.target.files[0])
                                 }}/>
                             </div>
@@ -76,7 +90,7 @@ const FormPerson = (props) => {
                                 <label htmlFor="personName">name</label>
                                 <input name="personName" id="personName" type="text" onChange={(event) => {
                                     setPersonName(event.target.value)
-                                }}/>
+                                }} required/>
                             </div>
                             <div className="form-input-person">
                                 <label htmlFor="personDate">date of birth</label>
@@ -92,8 +106,9 @@ const FormPerson = (props) => {
                             setPersonDescription(event.target.value)
                         }}/>
                     </div>
-                    <button className="button-add-person-submit" type="submit" onClick={createPerson}>save friend
-                    </button>
+                    <div className="error-message hidden" id="error-message-person-name">Add person name (min. 3 characters)</div>
+                    <div className="error-message hidden" id="error-message-person-name-long">Person name too long (max. 30 characters)</div>
+                    <button className="button-add-person-submit" type="submit" onClick={createPerson}>save friend</button>
                 </form>
             </div>
         )

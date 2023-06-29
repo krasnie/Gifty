@@ -15,9 +15,6 @@
   font-family: $font-brand;
   letter-spacing: $buttonSize*0.1;
   font-weight: 300;
-  :hover {
-    background-color: $color-primary;
-  }
 }
 
 @mixin title(){

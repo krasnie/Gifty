@@ -20,7 +20,18 @@ const FormGift = (props) => {
         const getPeople = async () => {
             const people = await getDocs(personsCollection);
             const allPeople = (people.docs.map((doc) => ({...doc.data(), id: doc.id})));
-            //setPeopleList(allPeople.filter((doc) => (doc.personAuthor.id === auth.currentUser.uid)))
+            allPeople.sort((a, b) => {
+                let fa = a.personName.toLowerCase(),
+                    fb = b.personName.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
             setPeopleList(allPeople)
         }
         getPeople();
@@ -28,16 +39,37 @@ const FormGift = (props) => {
 
     const createGift = async (event) => {
         event.preventDefault();
-        giftPeople.map((person) => {
-            addDoc(giftsCollection, {
-                giftName,
-                giftLink,
-                giftPrice,
-                giftDescription,
-                giftPerson: person,
+        const errorMessageName = document.getElementById("error-message-name");
+        const errorMessageNameLong = document.getElementById("error-message-name-long");
+        const errorMessagePeople = document.getElementById("error-message-people");
+        if (giftName.length < 3){
+            errorMessageName.classList.remove("hidden");
+            return null;
+        } else {
+            errorMessageName.classList.add("hidden");
+        }
+        if (giftName.length > 70){
+            errorMessageNameLong.classList.remove("hidden");
+            return null;
+        } else {
+            errorMessageNameLong.classList.add("hidden");
+        }
+        if (giftPeople.length === 0){
+            errorMessagePeople.classList.remove("hidden");
+            return null;
+        } else {
+            errorMessageName.classList.add("hidden");
+            giftPeople.map((person) => {
+                addDoc(giftsCollection, {
+                    giftName,
+                    giftLink,
+                    giftPrice,
+                    giftDescription,
+                    giftPerson: person,
+                })
             })
-        })
-        navigate("/friends")
+            navigate("/friends")
+        }
     }
 
     const addGiftPerson = (id) => {
@@ -99,17 +131,11 @@ const FormGift = (props) => {
                                 )
                             }
                         })}
-                        {/*<input className="form-checkbox-for-who" type="checkbox" id="7HK7k7E7oZiq52Pq5dAi"/>*/}
-                        {/*<label className="form-checkbox-for-who-avatar" htmlFor="person1"></label>*/}
-                        {/*<input className="form-checkbox-for-who" type="checkbox" id="person2"/>*/}
-                        {/*<label className="form-checkbox-for-who-avatar" htmlFor="person2"></label>*/}
-                        {/*<input className="form-checkbox-for-who" type="checkbox" id="person3"/>*/}
-                        {/*<label className="form-checkbox-for-who-avatar" htmlFor="person3"></label>*/}
-                        {/*<input className="form-checkbox-for-who" type="checkbox" id="person4"/>*/}
-                        {/*<label className="form-checkbox-for-who-avatar" htmlFor="person4"></label>*/}
-                        {/*<input className="form-checkbox-for-who" type="checkbox" id="person5"/>*/}
-                        {/*<label className="form-checkbox-for-who-avatar" htmlFor="person5"></label>*/}
                     </div>
+                    <div className="error-message hidden" id="error-message-name">Add gift name (min. 3 characters)</div>
+                    <div className="error-message hidden" id="error-message-name-long">Gift name too long (max. 70 characters)</div>
+                    <div className="error-message hidden" id="error-message-people">Choose persons</div>
+                    {peopleList.some((person)=>(person.personAuthor.id === auth.currentUser.uid)) ? null : <div className="error-message" id="error-message-people">CREATE FRIENDS FIRST</div>}
                     <button className="button-add-gift-submit" type="submit" onClick={createGift}>save idea</button>
                 </form>
             </div>

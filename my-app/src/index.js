@@ -4,13 +4,9 @@ import './styles/styles.scss';
 import {
     HashRouter,
     Route,
-    Routes,
-    Link,
-    NavLink,
-    Outlet
+    Routes
 } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-//import firebase, {db} from "./firebase";
 import Header from "./components/Header";
 import Authentication from "./components/Authentication";
 import MainButton from "./components/MainButton";

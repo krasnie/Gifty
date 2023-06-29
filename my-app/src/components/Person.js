@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import {collection, deleteDoc, doc, getDocs, updateDoc, deleteField} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs} from "firebase/firestore";
 import {db} from "../firebase";
-import {useNavigate} from "react-router-dom";
 
 const Person = (props) => {
-    let navigate = useNavigate();
-
     const [giftsList, setGiftsList] = useState([]);
     const [reload, setReload] = useState(true);
 
@@ -84,7 +81,7 @@ const Person = (props) => {
                                             <div className="single-gift-price">{gift.giftPrice}</div>
                                             <div className="single-gift-description">{gift.giftDescription}</div>
                                             <div className="gift-buttons">
-                                                <a href={gift.giftLink} target="_blank" className="gift-link-button">link</a>
+                                                {gift.giftLink && <a href={gift.giftLink} target="_blank" className="gift-link-button">link</a>}
                                                 <button className="gift-delete-button" onClick={()=>giftDelete(gift.id)}>delete</button>
                                             </div>
                                         </div>
@@ -94,10 +91,10 @@ const Person = (props) => {
 
                         })}
                     </div>
-                    <div className="gifts-list-switch" >
+                    {giftsList.some((gift) => (gift.giftPerson === props.personId)) && <div className="gifts-list-switch" >
                         <input type="checkbox" id="showgifts"/>
                         <label htmlFor="showgifts" id={`hide${props.personId}`} onClick={()=>hideGifts(props.personId)}>▲</label>
-                    </div>
+                    </div>}
                 </div>
             </>
         )

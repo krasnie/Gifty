@@ -7,6 +7,24 @@
   }
 }
 
+@keyframes colorChange {
+  from {
+    background-color: none;
+  }
+  to {
+    background-color: transparentize($color-back, 0.5);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(100%);
+  }
+  to {
+    transform: scale(95%);
+  }
+}
+
 .add-gift{
   @include flexboxCenter;
   flex-direction: column;
@@ -30,7 +48,15 @@
     @media (max-width: 500px) {
       @include buttonStyle(22px);
     }
+    .add-git-button-text{
+
+    }
+    :hover{
+      animation: zoom 0.5s;
+      animation-fill-mode: forwards;
+     }
   }
+
 }
 
 .explore-section{
@@ -86,6 +112,13 @@
       height: 150px;
       border-radius: 75px 75px 0px 0px;
     }
+    :hover{
+      animation: none;
+    }
+  }
+  :hover{
+    animation: colorChange 0.5s;
+    animation-fill-mode: forwards;
   }
   .see-events {
     @media (max-width: 1200px) {

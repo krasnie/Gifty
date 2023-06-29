@@ -1,3 +1,12 @@
+@keyframes colorChange {
+  from {
+    background-color: none;
+  }
+  to {
+    background-color: transparentize($color-back, 0.5);
+  }
+}
+
 .authentication{
   @include sectionForm;
   @include flexboxCenter;
@@ -70,5 +79,9 @@
   .button-signout{
     @include buttonSmall($color-secondary);
     margin-left: 20px;
+  }
+  :hover{
+    animation: colorChange 0.5s;
+    animation-fill-mode: forwards;
   }
 }

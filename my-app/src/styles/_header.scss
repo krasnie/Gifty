@@ -1,12 +1,18 @@
+@keyframes colorChange {
+  from {
+    background-color: none;
+  }
+  to {
+    background-color: transparentize($color-back, 0.5);
+  }
+}
+
 .header {
   @include flexboxCenter;
   width: 100vw;
   height: 150px;
   background-color: $color-primary;
   background-image: linear-gradient(160deg, $color-primary, $color-back);
-  //position: fixed;
-  //top: 0;
-  //left: 0;
   flex-direction: column;
   .logo{
     color: $color-secondary;
@@ -19,18 +25,21 @@
     @include flexboxCenter;
     font-size: 13px;
     font-family: $font-primary;
+
     li {
       list-style-type: none;
+      border-radius: 20px;
+      :hover{
+        animation: colorChange 0.5s;
+        animation-fill-mode: forwards;
+      }
       .nav-button {
         text-decoration: none;
-        margin: 10px;
+        padding: 10px;
         text-transform: uppercase;
         color: $color-secondary;
         font-size: 16px;
         font-weight: 700;
-        :hover{
-          background-color: $color-primary;
-        }
       }
     }
   }
