@@ -3,7 +3,6 @@ import {addDoc, collection} from "firebase/firestore";
 import {db, auth, storage} from "../firebase";
 import {useNavigate} from "react-router-dom";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
-import {v4} from "uuid";
 
 const FormPerson = (props) => {
     const [personPhoto, setPersonPhoto] = useState(null);

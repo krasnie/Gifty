@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-    HashRouter,
-    Route,
-    Routes,
-    Link,
-    NavLink,
-    Outlet
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {collection, deleteDoc, doc, getDocs, updateDoc, deleteField} from "firebase/firestore";
 import {db} from "../firebase";
 import {useNavigate} from "react-router-dom";
@@ -38,6 +31,7 @@ const Person = (props) => {
                 giftDelete(gift.id)
             }
         })
+        props.setReloadPeople((prev)=>!prev)
     }
 
     const giftDelete = async (id) => {
@@ -71,7 +65,6 @@ const Person = (props) => {
                             <div className="person-profile-description">{props.personDescription}
                             </div>
                             <div className="person-profile-buttons">
-                                <button className="person-profile-edit-button">edit</button>
                                 <button className="person-profile-delete-button" onClick={()=>personDelete(props.personId)}>delete</button>
                                 <Link to="/add-gift" className="person-profile-add-gift-button">+ add gift</Link>
                             </div>

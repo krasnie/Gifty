@@ -81,7 +81,7 @@
 
         .person-profile-delete-button {
           @include buttonSmall(red);
-          margin-left: 10px;
+          //margin-left: 10px;
         }
 
         .person-profile-add-gift-button {
@@ -98,16 +98,24 @@
 
   .gift-section {
     @include flexboxCenter;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
 
     .single-gift {
-      width: 100%;
+      width: 30%;
       margin: 10px;
-      border: 2px dashed $color-primary;
+      border: 3px dashed $color-primary;
       border-radius: 15px;
       padding: 10px;
+      height: 100%;
       @include flexboxCenter;
+
+      @media (max-width: 1300px) {
+        width: 45%;
+      }
+      @media (max-width: 1000px) {
+        width: 100%;
+      }
 
       .single-gift-image{
         width: 80px;
@@ -116,7 +124,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        margin: 0px 40px;
+        margin: 0px 20px;
         @media (max-width: 1000px) {
           margin: 0px 15px;
         }

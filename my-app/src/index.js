@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/styles.scss';
 import {
@@ -19,13 +19,20 @@ import People from "./components/People";
 import FormPerson from "./components/FormPerson";
 import Events from "./components/Events";
 import Person from "./components/Person";
+import PageNotFound from "./components/PageNotFound";
 
 const App = () => {
     const [userLoggedIn, setUserLoggedIn] = useState(false)
 
+    const scrollUp = (id) => {
+        const up = document.getElementById(id)
+        up.scrollIntoView({behavior: "smooth"})
+    }
+
     return (<HashRouter>
             <Header userLoggedIn={userLoggedIn}/>
             <div className="main">
+                <button onClick={()=> scrollUp("header")} className="up-button">^</button>
                 <div className="container">
                     <Routes>
                         <Route path='/login' element={<Authentication setUserLoggedIn={setUserLoggedIn}/>}/>
@@ -37,6 +44,7 @@ const App = () => {
                         <Route path='/events' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Events userLoggedIn={userLoggedIn}/></>}/>
                         {}
                         <Route path='/person' element={<><Authentication setUserLoggedIn={setUserLoggedIn}/><Person userLoggedIn={userLoggedIn}/></>}/>
+                        <Route path='*' element={<PageNotFound/>}/>
                     </Routes>
                 </div>
             </div>

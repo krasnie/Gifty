@@ -1,19 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {
-    HashRouter,
-    Route,
-    Routes,
-    Link,
-    NavLink,
-    Outlet
-} from 'react-router-dom';
+import React, {useState, useEffect, scrollIntoView} from 'react';
+import { Link } from 'react-router-dom';
 import {collection, getDocs} from "firebase/firestore"
-import {auth, db} from "../firebase";
+import { auth, db } from "../firebase";
 import Person from "./Person";
 
 
 const People = (props) => {
     const [peopleList, setPeopleList] = useState([]);
+    const [reloadPeople, setReloadPeople] = useState(true);
 
     const personsCollection = collection(db, "persons");
 
@@ -25,7 +19,12 @@ const People = (props) => {
             console.log("reading")
         }
         getPeople();
-    }, [])
+    }, [reloadPeople])
+
+    const scrollToPerson = (id) => {
+        const personScroll = document.getElementById(id);
+        personScroll.scrollIntoView({behavior: "smooth"})
+    }
 
     if (props.userLoggedIn) {
         return (<>
@@ -38,7 +37,7 @@ const People = (props) => {
                             if (person.personAuthor.id === auth.currentUser.uid) {
                                 return (
                                     <div className="people-single" key={person.id}>
-                                        <a href={personLink} className="people-pic man" style={{backgroundImage: `url("${person.personPhotoURL}")`}}></a>
+                                        <button onClick={()=> scrollToPerson(person.id)} className="people-pic" style={{backgroundImage: `url("${person.personPhotoURL}")`}}></button>
                                         <p className="people-name">{person.personName}</p>
                                     </div>
                                 )
@@ -50,7 +49,7 @@ const People = (props) => {
 
                 {peopleList.map((person) => {
                     if (person.personAuthor.id === auth.currentUser.uid){
-                        return <Person userLoggedIn={props.userLoggedIn} personName={person.personName} personBirthday={person.personBirthday} personDescription={person.personDescription} personId={person.id} personPhotoURL={person.personPhotoURL}/>
+                        return <Person userLoggedIn={props.userLoggedIn} personName={person.personName} personBirthday={person.personBirthday} personDescription={person.personDescription} personId={person.id} personPhotoURL={person.personPhotoURL} setReloadPeople={setReloadPeople}/>
                     } else {return null}
                 })
                 }

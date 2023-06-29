@@ -39,8 +39,7 @@
       @include textBasic;
       text-align: left;
       width: 100%;
-      margin-top: 10px;
-      margin-bottom: 30px;
+      margin: 30px 0px;
       font-size: 20px;
       color: $color-primary;
       @media(max-width: 1000px) {
@@ -60,8 +59,13 @@
           font-family: $font-primary;
           color: $color-secondary;
           text-transform: uppercase;
-          font-weight: 700;
+          font-weight: 500;
           padding: 5px;
+          span{
+            font-family: $font-brand;
+            font-weight: 400;
+            font-size: 20px;
+          }
         }
 
         .delete-event-button {

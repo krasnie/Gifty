@@ -27,21 +27,13 @@
         width: 100%;
       }
 
-      .man {
-        background-image: url("images/avatar.png");
-      }
-
-      .woman {
-        background-image: url("images/avatar2.png");
-      }
-
       .people-pic {
         width: 150px;
         height: 150px;
         border-radius: 75px;
         background-position: center;
         background-size: cover;
-
+        border: none;
       }
 
       .people-name {

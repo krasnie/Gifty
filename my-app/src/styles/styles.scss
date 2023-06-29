@@ -3,10 +3,6 @@
 @import "settings/mixins";
 @import "settings/fonts";
 
-.test {
-  background-color: cornflowerblue
-}
-
 * {
   font-family: $font-primary;
   box-sizing: border-box;
@@ -38,6 +34,8 @@
     font-size: 30px;
     font-weight: 900;
     z-index: 99;
+    border: none;
+    cursor: pointer;
   }
 
   .container {
@@ -56,8 +54,23 @@
   }
 }
 
-
-
+.page-not-found{
+  flex-direction: column;
+  padding: 70px;
+  h2{
+    font-family: $font-brand;
+    font-size: 60px;
+    color: $color-secondary;
+  }
+  p{
+    padding-top: 40px;
+    font-family: $font-primary;
+    color: $color-secondary;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
 
 @import "header";
 
